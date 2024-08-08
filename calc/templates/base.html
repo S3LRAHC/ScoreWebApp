@@ -1,19 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Message Board - {% block title %}{% endblock title %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIU Phoenix Score Converter - {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<h1>Message Board</h1>
-{% include("_navigation.html") %}
-<section>
-  <header>
-    {% block header %}{% endblock header %}
-  </header>
-  <main>
-    {% block content %}<p>No messages.</p>{% endblock content %}
-  </main>
-</section>
+    <div class="container">
+        <h1>PIU Score Converter</h1>
+        <div class="results-container">
+            <div id="grade" class="results">SSS+</div>
+            <div id="plate" class="results">PG</div>
+            <div id="score" class="results">1,000,000</div>
+        </div>
+        <form id="scoreForm">
+            <div class="form-group">
+                <label for="perfect">Perfect</label>
+                <input type="number" id="perfect" name="perfect" required min="0">
+            </div>
+            <div class="form-group">
+                <label for="great">Great</label>
+                <input type="number" id="great" name="great" required min="0">
+            </div>
+            <div class="form-group">
+                <label for="good">Good</label>
+                <input type="number" id="good" name="good" required min="0">
+            </div>
+            <div class="form-group">
+                <label for="bad">Bad</label>
+                <input type="number" id="bad" name="bad" required min="0">
+            </div>
+            <div class="form-group">
+                <label for="miss">Miss</label>
+                <input type="number" id="miss" name="miss" required min="0">
+            </div>
+            <div class="form-group">
+                <label for="max_combo">Max Combo</label>
+                <input type="number" id="max_combo" name="max_combo" required min="0">
+            </div>
+            <button type="submit">Calculate Score</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
