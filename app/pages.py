@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify
-from calc.score_utils import get_letter_grade_and_plate
-from calc.score_utils import calculate_phoenix_score
+from app.score_utils import get_letter_grade_and_plate
+from app.score_utils import calculate_phoenix_score
 
 bp = Blueprint("pages", __name__)
 

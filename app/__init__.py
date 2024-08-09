@@ -1,6 +1,6 @@
 from flask import Flask
 
-from calc import pages
+from app import pages
 
 def create_app():
     app = Flask(__name__)
