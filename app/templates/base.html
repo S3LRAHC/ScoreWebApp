@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIU Phoenix Score Converter - {% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ url_for('static', filename='js/songDropdown.js') }}"></script>
 </head>
 <body>
     <div class="container">
@@ -46,15 +50,35 @@
         </form>
         <div class="form-popup" id="myForm">
             <form action="/action_page.php" class="form-container">
-              <h1>Login</h1>
+              <h2>Submit Score</h2>
+              
+              <div class="popup-form-group">
+                <label for="song" class="text-input-labels"><b>Song</b></label>
+                <select id="song" name="song" required>
+                    <option value="">Select a song</option>
+                </select>
+            </div>
+
+              <div class="popup-form-group">
+                <label class="radio-button-labels">
+                    <input type="radio" name="matchType" value="singles"> Singles
+                </label>
+                <label class="radio-button-labels">
+                    <input type="radio" name="matchType" value="doubles"> Doubles
+                </label>
+              </div>
           
-              <label for="email"><b>Email</b></label>
-              <input type="text" placeholder="Enter Email" name="email" required>
-          
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required>
-          
-              <button type="submit" class="btn">Login</button>
+              <div class="popup-form-group">
+                <label for="level" class="text-input-labels"><b>Level</b></label>
+                <input type="number"  placeholder="Enter level" name="level" required min="1">
+              </div>
+
+              <div class="popup-form-group">
+                <label for="username" class="text-input-labels"><b>Username</b></label>
+                <input type="text" placeholder="Enter username" name="username" required>
+              </div>              
+              
+              <button type="submit" class="btn">Submit</button>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             </form>
           </div>
