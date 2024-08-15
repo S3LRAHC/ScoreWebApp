@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 .container {
@@ -25,6 +26,11 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 .results-container {
@@ -52,6 +58,12 @@ form {
     justify-content: center;
 }
 
+.popup-form-group {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
+
 label {
     width: 130px;
     text-align: center;
@@ -60,8 +72,17 @@ label {
 }
 
 input[type="number"] {
-    width: 80px;
+    width: 160px;
     padding: 5px;
+}
+
+.radio-button-labels {
+    text-align: left;
+}
+
+.text-input-labels {
+    text-align: left;
+    margin-top: 8px;
 }
 
 .shadow {
@@ -126,8 +147,8 @@ button {
 /* Full-width input fields */
 .form-container input[type=text], .form-container input[type=password] {
     width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
+    padding: 8px;
+    margin: 5px 0 10px 0;
     border: none;
     background: #f1f1f1;
   }
@@ -140,14 +161,13 @@ button {
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-    background-color: #04AA6D;
+    background-color: #4CAF50;
     color: white;
-    padding: 16px 20px;
     border: none;
     cursor: pointer;
     width: 100%;
     margin-bottom:10px;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 /* Add a red background color to the cancel button */
@@ -157,8 +177,18 @@ button {
 
 /* Add some hover effects to buttons */
 .form-container .btn:hover, .open-button:hover {
-    opacity: 1;
+    opacity: 0.8;
 }
+
+/* Pop up form dropdown width */
+.select2-selection__rendered {
+    width: 145px;
+}
+
+.select2-selection {
+    height: auto !important;
+}
+
 
 @media (max-height: 600px) {
     .container {

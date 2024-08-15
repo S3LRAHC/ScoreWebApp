@@ -1,26 +1,32 @@
-from flask import Flask
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.orm import declarative_base, sessionmaker
+import sqlite3
+import click
+from flask import current_app, g
 
+def init_app(app):
+    app.teardown_appcontext(close_db)
+    app.cli.add_command(init_db_command)
 
-def create_db():
-    #url of the database
-    db_url = 'sqlite:///database.db'
-    
-    engine = create_engine(db_url)
-    
-    #specify the base class for all the models
-    Base = declarative_base()
-    
-    #create a table for the users
-    class User(Base):
-        __tablename__ = 'users'
-        
-        id = Column(Integer, primary_key=True)
-        username = Column(String, unique=True)
-        password = Column(String)
-    
-    #create database
-    Base.metadata.create_all(engine)
-    
-    return engine, Base
+@click.command("init-db")
+def init_db_command():
+    db = get_db()
+
+    with current_app.open_resource("schema.sql") as f:
+        db.executescript(f.read().decode("utf-8"))
+
+    click.echo("You successfully initialized the database!")
+
+def get_db():
+    if "db" not in g:
+        g.db = sqlite3.connect(
+            current_app.config["DATABASE"],
+            detect_types=sqlite3.PARSE_DECLTYPES,
+        )
+        g.db.row_factory = sqlite3.Row
+
+    return g.db
+
+def close_db(e=None):
+    db = g.pop("db", None)
+
+    if db is not None:
+        db.close()
