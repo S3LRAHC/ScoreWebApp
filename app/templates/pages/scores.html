@@ -1,9 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'sub_page.html' %}
 
 {% block header %}
-  <h2>{% block title %}About{% endblock title %}</h2>
+  <h2>{% block title %}Posts{% endblock title %}</h2>
 {% endblock header %}
 
 {% block content %}
-  <p>This is a message board for friendly messages.</p>
+  {% for score in scores %}
+    <article>
+      <p class="message">{{ score["song"] }}<p>
+      <aside>Posted by {{ score["score"] }} on {{ score["created"].strftime("%b %d, %Y at %I:%M%p") }}</aside>
+    </article>
+  {% endfor %}
 {% endblock content %}
