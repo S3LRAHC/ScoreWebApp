@@ -12,11 +12,17 @@ def calculate_phoenix_score(res):
 
     # Find the total notes
     total_notes = perfect + great + good + bad + miss
+    
+    # edge case if the user enters more max combo than total notes
+    if max_combo > total_notes:
+        max_combo = total_notes
 
     # Calculate total score
-    return int(round(
-        (0.995 * note_weights + 0.005 * max_combo) / total_notes * 1000000, 0
-    ))
+    try:
+        total_score = int(round((0.995 * note_weights + 0.005 * max_combo) / total_notes * 1000000, 0))
+    except ZeroDivisionError:
+        return 0
+    return total_score
 
 
 def get_letter_grade_and_plate(score, result):
