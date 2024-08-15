@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 
-from app import pages, scores, database
+from app import home_page, scores, database
 
 load_dotenv()
 
@@ -12,7 +12,7 @@ def create_app():
 
     database.init_app(app)
 
-    app.register_blueprint(pages.bp)
+    app.register_blueprint(home_page.bp)
     app.register_blueprint(scores.bp)
     print(f"Current Environment: {os.getenv('ENVIRONMENT')}")
     print(f"Using Database: {app.config.get('DATABASE')}")
