@@ -5,13 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIU Phoenix Score Converter - {% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ url_for('static', filename='js/songDropdown.js') }}"></script>
 </head>
 <body>
     <div class="container">
+        {% include("_navigation.html") %}
         <h1>PIU Score Converter</h1>
         <div class="results-container">
             <div id="grade" class="results">SSS+</div>
@@ -49,22 +46,20 @@
             </div>
         </form>
         <div class="form-popup" id="myForm">
-            <form action="/action_page.php" class="form-container">
+            <form class="form-container">
               <h2>Submit Score</h2>
               
               <div class="popup-form-group">
                 <label for="song" class="text-input-labels"><b>Song</b></label>
-                <select id="song" name="song" required>
-                    <option value="">Select a song</option>
-                </select>
-            </div>
+                <input type="text" placeholder="Enter song" name="song" required>
+              </div>  
 
               <div class="popup-form-group">
                 <label class="radio-button-labels">
-                    <input type="radio" name="matchType" value="singles"> Singles
+                    <input type="radio" name="matchType" value="S"> Singles
                 </label>
                 <label class="radio-button-labels">
-                    <input type="radio" name="matchType" value="doubles"> Doubles
+                    <input type="radio" name="matchType" value="D"> Doubles
                 </label>
               </div>
           
