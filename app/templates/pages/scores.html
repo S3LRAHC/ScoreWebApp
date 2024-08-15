@@ -1,14 +1,101 @@
-{% extends 'sub_page.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIU Scores</title>
+    <style>
+        nav ul {
+          list-style-type: none;
+          padding: 0;
+        }
 
-{% block header %}
-  <h2>{% block title %}Posts{% endblock title %}</h2>
-{% endblock header %}
+        nav ul li {
+          display: inline;
+          margin: 0 5px;
+        }
 
-{% block content %}
-  {% for score in scores %}
-    <article>
-      <p class="message">{{ score["song"] }}<p>
-      <aside>Posted by {{ score["score"] }} on {{ score["created"].strftime("%b %d, %Y at %I:%M%p") }}</aside>
-    </article>
-  {% endfor %}
-{% endblock content %}
+        nav {
+            text-align: center;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            color: #333;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      {% include("_navigation.html") %}  
+      <h1>PIU Scores</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Song</th>
+                    <th>Difficulty</th>
+                    <th>Perfect</th>
+                    <th>Great</th>
+                    <th>Good</th>
+                    <th>Bad</th>
+                    <th>Miss</th>
+                    <th>Max Combo</th>
+                    <th>Grade</th>
+                    <th>Plate</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in scores %}
+                <tr>
+                    <td>{{ score.user }}</td>
+                    <td>{{ score.song }}</td>
+                    <td>{{ score.difficulty }}</td>
+                    <td>{{ score.perfect }}</td>
+                    <td>{{ score.great }}</td>
+                    <td>{{ score.good }}</td>
+                    <td>{{ score.bad }}</td>
+                    <td>{{ score.miss }}</td>
+                    <td>{{ score.max_combo }}</td>
+                    <td>{{ score.grade }}</td>
+                    <td>{{ score.plate }}</td>
+                    <td>{{ score.score }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
