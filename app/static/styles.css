@@ -146,7 +146,7 @@ button {
 
 /* Full-width input fields */
 .form-container input[type=text], .form-container input[type=password] {
-    width: 100%;
+    width: 160px;
     padding: 8px;
     margin: 5px 0 10px 0;
     border: none;
@@ -189,6 +189,28 @@ button {
     height: auto !important;
 }
 
+a,
+a:visited {
+  color: #007bff;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 5px;
+}
+
+nav {
+    text-align: center;
+}
 
 @media (max-height: 600px) {
     .container {
