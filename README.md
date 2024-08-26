@@ -5,6 +5,7 @@
 
 ## Prerequisites Local Use
 - run `pip install -U Flask`
+- OR run `pip install -r requirements.txt`
 
 ## Running the app
 - `cd` into root
