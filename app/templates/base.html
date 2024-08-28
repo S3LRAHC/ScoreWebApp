@@ -70,8 +70,13 @@
 
               <div class="popup-form-group">
                 <label for="username" class="text-input-labels"><b>Username</b></label>
-                <input type="text" placeholder="Enter username" name="username" required>
-              </div>              
+                {% if current_user.is_authenticated %}
+                    <input type="text" id="username" name="username" class="form-control" 
+                value="{{ current_user.username }}" readonly style="background-color: #e9ecef; cursor: not-allowed;">
+                {% else %}
+                    <input type="text" placeholder="Enter username" name="username" required>
+                {% endif %}
+                </div>              
               
               <button type="submit" class="btn">Submit</button>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>

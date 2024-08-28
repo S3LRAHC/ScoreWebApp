@@ -20,6 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    justify-content: center;
     min-height: 100%;
 }
 
@@ -212,9 +213,11 @@ nav {
     text-align: center;
 }
 
+
 @media (max-height: 600px) {
     .container {
         justify-content: flex-end;
+       
     }
     
     .results-container {

@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
     <title>Sign Up</title>
 </head>
+
 <body>
-    <h2>Sign Up</h2>
-    <form method="POST">
-        <label for="username">Username:</label><br>
-        <input type="text" name="username" id="username" required><br>
-        <label for="email">Email:</label><br>
-        <input type="email" name="email" id="email" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" name="password" id="password" required><br>
-        <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="{{ url_for('auth.signin') }}">Sign In</a></p>
+    <div>
+        {% include("_navigation.html") %}
+    </div>
+    <div class="auth-container">
+        <h2>Sign Up</h2>
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" name="username" id="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" id="password" placeholder="Create password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign Up</button>
+            <div class="text-center">
+                <span>Already have an account? <a href="{{ url_for('auth.signin') }}">Login</a></span>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>
