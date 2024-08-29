@@ -1,13 +1,172 @@
+<style>
+  /* navigation.css */
+  #navbar {
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    position: sticky;
+  }
 
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+    height: 60px;
+    padding: 10px 20px;
+  }
+
+  #menu {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .handle-wrapper {
+    margin: 0;
+    padding: 0 15px;
+    flex: 0 0 auto;
+    position: relative;
+  }
+
+  #search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  #search input[type="text"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  #user-menu {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .user-menu-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .user-menu-button:focus {
+    outline: none;
+  }
+
+  .user-menu-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1000;
+  }
+
+  .user-menu-dropdown a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+  }
+
+  .user-menu-dropdown a:hover {
+    background-color: #f0f0f0;
+  }
+
+  .user-menu-button:hover .user-menu-dropdown {
+    display: block;
+  }
+
+  #lang {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  #lang select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+  }
+</style>
 <nav id="navbar">
-  <ul>
-    <li><a href="{{ url_for('pages.home') }}">Home</a></li>
-    <li><a href="{{ url_for('scores.scores') }}">Scores</a></li>
-    {% if current_user.is_authenticated %}
-      <li><a href="{{ url_for('auth.dashboard') }}">{{ current_user.username }}</a></li>
-      <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
-    {% else %}
-      <li><a href="{{ url_for('auth.signin') }}">Login</a></li>
-    {% endif %}
-  </ul>
+  <div class="wrapper">
+    <div id="menu">
+      <div id="menu-mobile"></div>
+      <div id="home-mobile"></div>
+      <div class="handle-wrapper desktop home">
+        <a href="{{ url_for('pages.home') }}" title="Home">
+          <span class="site-name">
+            PIU
+            <strong>STATS</strong>
+          </span>
+        </a>
+      </div>
+      <div class="handle-wrapper desktop tbx-menu">
+        <a href="{{ url_for('scores.scores') }}">Scores</a>
+      </div>
+      <div class="handle-wrapper desktop tbx-menu">
+        <a href="#">Pictures</a>
+      </div>
+      <div class="handle-wrapper desktop tbx-menu">
+        <a href="#">Community</a>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div id="search">
+      <form action="" method="get">
+        <input type="text" name="query" placeholder="Search..." />
+      </form>
+    </div>
+
+    <!-- User Menu -->
+    <div id="user-menu">
+      <button class="user-menu-button">
+        {% if current_user.is_authenticated %}
+        <li><a href="{{ url_for('auth.dashboard') }}">{{ current_user.username }}</a></li>
+        <div class="user-menu-dropdown">
+          <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+        </div>
+        {% else %}
+        <span style="color:black ;">User</span>
+        <div class="user-menu-dropdown">
+          <a href="{{ url_for('auth.signin') }}">Sign In</a>
+          <a href="{{ url_for('auth.signup') }}">Sign Up</a>
+        </div>
+        {% endif %}
+      </button>
+    </div>
+
+    <!-- Language Selection -->
+    <div id="lang">
+      <select name="language" id="language">
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <!-- Add more languages as needed -->
+      </select>
+    </div>
+  </div>
 </nav>

@@ -9,26 +9,29 @@
 </head>
 
 <body>
-    <div>
+    <header>
         {% include("_navigation.html") %}
-    </div>
-    <div class="auth-container">
-        <h2>Sign In</h2> 
-        <form method="POST">
-            <div class="form-group">
-                <input type="email" name="email" id="email" placeholder="Email" required>
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" id="password" placeholder="Password" required>
-            </div>
-            <div class="text-right">
-                <a href="#">Forgot password?</a>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign In</button>
-            <div class="text-center">
-                <span>Don't have an account? <a href="{{ url_for('auth.signup') }}">Signup</a></span>
-            </div>
-        </form>
+    </header>
+    <div class="container">
+        <div class="auth-container">
+            <h2>Sign In</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="text-right">
+                    <a href="#">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+                <div class="text-center">
+                    <span>Don't have an account? <a href="{{ url_for('auth.signup') }}">Signup</a></span>
+                </div>
+            </form>
+        </div>
+
     </div>
 </body>
 

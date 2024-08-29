@@ -1,11 +1,106 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block header %}
-  <h2>{% block title %}Home{% endblock title %}</h2>
-{% endblock header %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIU Phoenix Score Converter - {% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
 
-{% block content %}
-  <p>
-    Learn more about this project by visiting the <a href="{{ url_for('pages.about') }}">About page</a>.
-  </p>
-{% endblock content %}
+<body>
+    <header>
+        {% include("_navigation.html") %}
+    </header>
+    <div class="container">
+        <div id="calculator">
+            <h1>PIU Score Converter</h1>
+            <div class="results-container">
+                <div id="grade" class="results">SSS+</div>
+                <div id="plate" class="results">PG</div>
+                <div id="score" class="results">1,000,000</div>
+            </div>
+            <form id="scoreForm">
+                <div class="form-group">
+                    <label for="perfect">Perfect</label>
+                    <input type="number" id="perfect" name="perfect" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="great">Great</label>
+                    <input type="number" id="great" name="great" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="good">Good</label>
+                    <input type="number" id="good" name="good" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="bad">Bad</label>
+                    <input type="number" id="bad" name="bad" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="miss">Miss</label>
+                    <input type="number" id="miss" name="miss" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="max_combo">Max Combo</label>
+                    <input type="number" id="max_combo" name="max_combo" required min="0">
+                </div>
+                <div class="button-group">
+                    <button type="button" class="open-button" onclick="openForm()" id="submitButton">Submit</button>
+                    <button type="submit" id="calculateButton">Calculate</button>
+                </div>
+            </form>
+            <div class="form-popup" id="myForm">
+                <form class="form-container">
+                    <h2>Submit Score</h2>
+
+                    <div class="popup-form-group">
+                        <label for="song" class="text-input-labels"><b>Song</b></label>
+                        <input type="text" placeholder="Enter song" name="song" required>
+                    </div>
+
+                    <div class="popup-form-group">
+                        <label class="radio-button-labels">
+                            <input type="radio" name="matchType" value="S"> Singles
+                        </label>
+                        <label class="radio-button-labels">
+                            <input type="radio" name="matchType" value="D"> Doubles
+                        </label>
+                    </div>
+
+                    <div class="popup-form-group">
+                        <label for="level" class="text-input-labels"><b>Level</b></label>
+                        <input type="number" placeholder="Enter level" name="level" required min="1">
+                    </div>
+
+                    <div class="popup-form-group">
+                        <label for="username" class="text-input-labels"><b>Username</b></label>
+                        {% if current_user.is_authenticated %}
+                        <input type="text" id="username" name="username" class="form-control"
+                            value="{{ current_user.username }}" readonly
+                            style="background-color: #e9ecef; cursor: not-allowed;">
+                        {% else %}
+                        <input type="text" placeholder="Enter username" name="username" required>
+                        {% endif %}
+                    </div>
+
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/updateResult.js') }}"></script>
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

@@ -9,11 +9,12 @@
 </head>
 
 <body>
-    <div>
+    <header>
         {% include("_navigation.html") %}
-    </div>
-    <div class="auth-container">
-        <h2>Sign Up</h2>
+    </header>
+    <div class="container">
+        <div class="auth-container">
+            <h2>Sign Up</h2>
         <form method="POST">
             <div class="form-group">
                 <input type="text" name="username" id="username" placeholder="Username" required>
@@ -32,6 +33,7 @@
                 <span>Already have an account? <a href="{{ url_for('auth.signin') }}">Login</a></span>
             </div>
         </form>
+        </div>
     </div>
 </body>
 
