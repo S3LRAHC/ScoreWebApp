@@ -6,6 +6,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
+
 .container {
     width: 100%;
     padding: 20px;
@@ -57,10 +58,10 @@ h2 {
     color: #009FE2;
 }
 
-button {
+.btn {
     display: block;
     width: 100%;
-    margin: 20px 0 0;
+    margin: 20px 0 15px;
     padding: 10px 20px;
     color: white;
     border: none;

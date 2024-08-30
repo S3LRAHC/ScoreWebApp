@@ -13,8 +13,7 @@ nav {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;  
     margin: 0;
     background-color: #f4f4f4;
 }
@@ -45,6 +44,7 @@ tr:hover {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    line-height: 1.6;
 }
 .pagination {
     display: flex;
