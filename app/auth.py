@@ -64,16 +64,16 @@ def signin():
             flash('You have been logged in!', 'success')
             
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('auth.dashboard'))
+            return redirect(next_page) if next_page else redirect(url_for('auth.profile'))
 
         flash('Login unsuccessful. Please check email and password', 'danger')
 
     return render_template('pages/signin.html')
 
-@bp.route('/dashboard')
+@bp.route('/profile')
 @login_required
-def dashboard():
-    return render_template('pages/dashboard.html')
+def profile():
+    return render_template('pages/profile.html')
 
 @bp.route('/logout')
 @login_required
