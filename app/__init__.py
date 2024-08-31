@@ -1,15 +1,9 @@
 import os
 from dotenv import load_dotenv
-from flask_sqlalchemy import SQLAlchemy
-from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
 from flask import Flask
 
-from app import  home_page, scores, database, pictures
-
-db = SQLAlchemy()
-bcrypt = Bcrypt()
-login_manager = LoginManager()
+from app import  home_page, scores, database, pictures, users
+from app.extensions import user_db as db, bcrypt, login_manager
 
 def create_app():
     
@@ -33,6 +27,7 @@ def create_app():
     app.register_blueprint(home_page.bp)
     app.register_blueprint(scores.bp)
     app.register_blueprint(pictures.bp)
+    app.register_blueprint(users.bp)
     
     #something weird with circular imports
     from app.auth import bp as auth_bp

@@ -1,11 +1,11 @@
 import bcrypt
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import  UserMixin, login_user, login_required, logout_user, current_user
-from app import db, bcrypt, login_manager
-
+from app.extensions import user_db as db, bcrypt, login_manager
 
 bp = Blueprint('auth', __name__)
 
+#=========== USER MODEL ===========
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)

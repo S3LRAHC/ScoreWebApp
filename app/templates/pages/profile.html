@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}"> -->
     <style>
-
-        html { 
+        html {
             * {
                 border: 1px solid rgb(0, 0, 0, .2);
             }
         }
-        
+
         html,
         body {
             overflow-y: hidden;
@@ -23,7 +22,7 @@
             /* Ensure height is not fixed */
             padding: 0;
             margin-top: 40px;
-            
+
         }
 
         body {
@@ -57,28 +56,29 @@
             min-height: 100%;
         }
 
-        .sub-container { 
+        .sub-container {
             padding: 10px;
             margin: 10px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        .content { 
+
+        .content {
             width: 70%;
             height: 90%;
             margin-right: 35px;
         }
 
-        .info { 
+        .info {
             width: 30%;
             height: 90%;
         }
-        .card { 
-            background-color: rgb(0, 0, 0, .5);
-           
-        }
 
+        .card {
+            background-color: rgb(0, 0, 0, .5);
+
+        }
     </style>
 </head>
 
@@ -89,6 +89,7 @@
 
     <!-- Main Content -->
     <div id="profile-info">
+        
         <h1>Welcome to Your Profile, {{ current_user.username }}!</h1>
     </div>
     <div class="main container">
@@ -105,7 +106,7 @@
             <section class="card comments">
                 <h2>Comments</h2>
             </section>
-            
+
         </div>
         <div class="sub-container info">
             <section class="card profile-art">

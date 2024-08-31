@@ -51,6 +51,7 @@
       background-color: #f0f0f0;
     }
 
+    /* =============== Search ================= */
     #search {
       flex: 1;
       display: flex;
@@ -67,7 +68,37 @@
       font-size: 14px;
     }
 
+    #results-container {
+      position: absolute;
+      background-color: #333;
+      color: #fff;
+      border-radius: 4px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+      width: 100%;
+      display: none;
+    }
 
+    #results-container ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #results-container ul li {
+      padding: 10px;
+      border-bottom: 1px solid #444;
+      cursor: pointer;
+    }
+
+    #results-container ul li:hover {
+      background-color: #555;
+    }
+
+
+    /* ============== User Menu ====================== */
     #user-menu {
       display: flex;
       align-items: center;
@@ -136,6 +167,7 @@
       margin-right: 10px;
 
     }
+    /* ================ Language ================== */
 
     #lang {
       flex: 0 0 auto;
@@ -179,15 +211,20 @@
     <!-- Search Bar -->
     <div id="search">
       <form action="" method="get">
-        <input type="text" name="query" placeholder="Search..." />
+        <input type="text" name="query" placeholder="Search" autocomplete="off" id="search-input"
+          oninput="fetchResults()" />
       </form>
+      <div class="results-container"></div>
     </div>
+
 
     <!-- User Menu -->
     <div id="user-menu">
       {% if current_user.is_authenticated %}
       <div class="user-menu-wrapper">
-        <a class="user-menu-button" href="{{ url_for('auth.profile') }}"> <span>{{ current_user.username }}</span></a>
+        <a class="user-menu-button" href="{{ url_for('auth.profile') }}">
+          <span>{{ current_user.username }}</span>
+        </a>
         <div class="user-menu-dropdown">
           <a href="{{ url_for('auth.logout') }}"><span class="fas fa-sign-out-alt tiny-icon-before"></span> Logout</a>
         </div>
@@ -214,4 +251,34 @@
       </select>
     </div>
   </div>
+  <script>
+    function fetchResults() {
+      const query = document.getElementById('search-input').value;
+      const resultsContainer = document.getElementById('results-container');
+
+      if (query.length > 0) {
+        fetch(`/search_users?query=${query}`)
+          .then(response => response.json())
+          .then(data => {
+            resultsContainer.innerHTML = '';
+            if (data.length > 0) {
+              let ul = document.createElement('ul');
+              data.forEach(user => {
+                let li = document.createElement('li');
+                li.textContent = user.username;
+                li.onclick = () => window.location.href = `/profile/${user.username}`;
+                ul.appendChild(li);
+              });
+              resultsContainer.appendChild(ul);
+              resultsContainer.style.display = 'block';
+            } else {
+              resultsContainer.style.display = 'none';
+            }
+          });
+      } else {
+        resultsContainer.style.display = 'none';
+      }
+    }
+
+  </script>
 </nav>
