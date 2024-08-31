@@ -5,7 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask import Flask
 
-from app import  home_page, scores, database
+from app import  home_page, scores, database, pictures
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -32,7 +32,9 @@ def create_app():
     # Register Blueprints
     app.register_blueprint(home_page.bp)
     app.register_blueprint(scores.bp)
+    app.register_blueprint(pictures.bp)
     
+    #something weird with circular imports
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp)
     

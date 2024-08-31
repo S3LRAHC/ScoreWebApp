@@ -1,8 +1,11 @@
-html, body {
-    overflow-y: auto; /* Allow vertical scrolling */
-    height: auto; /* Ensure height is not fixed */
-    margin: 0;
+html,
+body {
+    overflow-y: hidden;
+    /* Allow vertical scrolling */
+    height: auto;
+    /* Ensure height is not fixed */
     padding: 0;
+    margin-top: 40px;
 }
 
 body {
@@ -15,7 +18,7 @@ body {
 a {
     color: #000;
     text-decoration: none;
-  }
+}
 
 .container {
     width: 100%;
@@ -24,11 +27,11 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    justify-content: center;
     align-items: center;
     min-height: 100%;
 }
-#calculator { 
+
+#calculator {
     padding: 20px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -98,7 +101,7 @@ input[type="number"] {
 }
 
 .shadow {
-    text-shadow: 2px 2px 4px rgba(0,0,0,0);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0);
 }
 
 .button-group {
@@ -124,7 +127,8 @@ input[type="number"] {
 }
 
 .button-group #submitButton {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
+    /* Green */
 }
 
 .button-group #submitButton:hover {
@@ -132,7 +136,8 @@ input[type="number"] {
 }
 
 .button-group #calculateButton {
-    background-color: #008CBA; /* Blue */
+    background-color: #008CBA;
+    /* Blue */
 }
 
 .button-group #calculateButton:hover {
@@ -147,29 +152,31 @@ input[type="number"] {
     right: 15px;
     border: 3px solid #f1f1f1;
     z-index: 9;
-  }
+}
 
 /* Add styles to the form container */
 .form-container {
     max-width: 300px;
     padding: 10px;
     background-color: white;
-  }
+}
 
 /* Full-width input fields */
-.form-container input[type=text], .form-container input[type=password] {
+.form-container input[type=text],
+.form-container input[type=password] {
     width: 160px;
     padding: 8px;
     margin: 5px 0 10px 0;
     border: none;
     background: #f1f1f1;
-  }
+}
 
 /* When the inputs get focus, do something */
-.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+.form-container input[type=text]:focus,
+.form-container input[type=password]:focus {
     background-color: #ddd;
     outline: none;
-  }
+}
 
 /* Set a style for the submit/login button */
 .form-container .btn {
@@ -178,7 +185,7 @@ input[type="number"] {
     border: none;
     cursor: pointer;
     width: 100%;
-    margin-bottom:10px;
+    margin-bottom: 10px;
     opacity: 1;
 }
 
@@ -188,7 +195,8 @@ input[type="number"] {
 }
 
 /* Add some hover effects to buttons */
-.form-container .btn:hover, .open-button:hover {
+.form-container .btn:hover,
+.open-button:hover {
     opacity: 0.8;
 }
 
@@ -205,9 +213,9 @@ input[type="number"] {
 @media (max-height: 600px) {
     .container {
         justify-content: flex-end;
-       
+
     }
-    
+
     .results-container {
         flex-grow: 0;
     }

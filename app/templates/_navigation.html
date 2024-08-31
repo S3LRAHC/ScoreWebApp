@@ -5,17 +5,19 @@
     /* navigation.css */
     #navbar {
       top: 0;
+      left: 0;
       width: 100%;
       background-color: #fff;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      position: sticky;
+      position: fixed;
     }
 
     a {
       color: #000;
       text-decoration: none;
     }
+
     a:hover {
       color: #000;
       text-decoration: none;
@@ -27,7 +29,7 @@
       align-items: center;
       flex-flow: row nowrap;
       height: auto;
-      margin-bottom: 30px;
+      /* margin-bottom: 30px; */
     }
 
     #menu {
@@ -41,7 +43,6 @@
 
     .handle-wrapper {
       padding: 25px 25px;
-
       flex: 0 0 auto;
       position: relative;
     }
@@ -55,12 +56,12 @@
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      padding-left: 10px;
+      padding-left: 15px;
     }
 
     #search input[type="text"] {
-      width: 100%;
-      padding: 8px 12px;
+      width: 200%;
+      padding: 10px 14px;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 14px;
@@ -71,7 +72,7 @@
       display: flex;
       align-items: center;
       position: relative;
-      padding: 0 15px 0 15px;
+      padding: 0 20px 0 15px;
     }
 
 
@@ -92,6 +93,7 @@
       cursor: pointer;
       display: flex;
       align-items: center;
+      padding: 25px 5px 25px 5px;
     }
 
     .user-menu-button:focus {
@@ -150,7 +152,6 @@
       font-size: 14px;
       cursor: pointer;
     }
-
   </style>
 </head>
 <nav id="navbar">
@@ -167,7 +168,7 @@
       <a class="handle-wrapper desktop tbx-menu" href="{{ url_for('scores.scores') }}">
         Scores
       </a>
-      <a class="handle-wrapper desktop tbx-menu" href="#">
+      <a class="handle-wrapper desktop tbx-menu" href="{{ url_for('pictures.pictures') }}">
         Pictures
       </a>
       <a class="handle-wrapper desktop tbx-menu" href="#">
@@ -186,17 +187,14 @@
     <div id="user-menu">
       {% if current_user.is_authenticated %}
       <div class="user-menu-wrapper">
-        <button class="user-menu-button">
-          <a href="{{ url_for('auth.dashboard') }}"> <span>{{ current_user.username }}</span></a>
-        </button>
+        <a class="user-menu-button" href="{{ url_for('auth.dashboard') }}"> <span>{{ current_user.username }}</span></a>
         <div class="user-menu-dropdown">
           <a href="{{ url_for('auth.logout') }}"><span class="fas fa-sign-out-alt tiny-icon-before"></span> Logout</a>
         </div>
       </div>
       {% else %}
       <div class="user-menu-wrapper">
-        <button class="user-menu-button">
-          <span style="color: #000;">User</span>
+        <button class="user-menu-button" <span style="color: #000;">User</span>
         </button>
         <div class="user-menu-dropdown">
           <a href="{{ url_for('auth.signin') }}"><span class="fas fa-sign-in-alt tiny-icon-before"

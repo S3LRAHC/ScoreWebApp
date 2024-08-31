@@ -1,9 +1,11 @@
+
 body {
-    background-color: #009FE2;
+    background: linear-gradient(to bottom right, hsl(198, 100%, 46%), #f65252);
     align-items: center;
     height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
+    
 }
 
 
@@ -24,6 +26,7 @@ body {
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 h2 {
@@ -32,11 +35,13 @@ h2 {
 }
 
 .form-group input {
-    width: 100%;
+    width: 96%;
     height: 45px;
     font-size: 16px;
     margin-bottom: 15px;
-    /* padding: 0 10px; */
+    padding: 0 0 0 10px;
+    border-radius: 10px;
+    border-width: 0px;
 }
 
 .btn-primary {
