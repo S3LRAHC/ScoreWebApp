@@ -7,7 +7,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.8);
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
       z-index: 1000;
       position: fixed;
@@ -58,6 +58,7 @@
       align-items: center;
       justify-content: flex-start;
       padding-left: 15px;
+      width: 100px;
     }
 
     #search input[type="text"] {
@@ -70,16 +71,18 @@
 
     #results-container {
       position: absolute;
+      top: 80%;
+      width: 200px;
       background-color: #333;
-      color: #fff;
+      color: #fefefe;
       border-radius: 4px;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
       max-height: 200px;
       overflow-y: auto;
       z-index: 1000;
-      width: 100%;
       display: none;
     }
+
 
     #results-container ul {
       list-style-type: none;
@@ -88,13 +91,17 @@
     }
 
     #results-container ul li {
-      padding: 10px;
+      padding: 15px 15px 15px 15px;
       border-bottom: 1px solid #444;
       cursor: pointer;
     }
 
     #results-container ul li:hover {
       background-color: #555;
+    }
+
+    #results-container p {
+      padding-left: 15px
     }
 
 
@@ -167,6 +174,7 @@
       margin-right: 10px;
 
     }
+
     /* ================ Language ================== */
 
     #lang {
@@ -185,6 +193,7 @@
       cursor: pointer;
     }
   </style>
+
 </head>
 <nav id="navbar">
   <div class="wrapper">
@@ -214,7 +223,7 @@
         <input type="text" name="query" placeholder="Search" autocomplete="off" id="search-input"
           oninput="fetchResults()" />
       </form>
-      <div class="results-container"></div>
+      <div id="results-container"></div>
     </div>
 
 
@@ -251,34 +260,6 @@
       </select>
     </div>
   </div>
-  <script>
-    function fetchResults() {
-      const query = document.getElementById('search-input').value;
-      const resultsContainer = document.getElementById('results-container');
 
-      if (query.length > 0) {
-        fetch(`/search_users?query=${query}`)
-          .then(response => response.json())
-          .then(data => {
-            resultsContainer.innerHTML = '';
-            if (data.length > 0) {
-              let ul = document.createElement('ul');
-              data.forEach(user => {
-                let li = document.createElement('li');
-                li.textContent = user.username;
-                li.onclick = () => window.location.href = `/profile/${user.username}`;
-                ul.appendChild(li);
-              });
-              resultsContainer.appendChild(ul);
-              resultsContainer.style.display = 'block';
-            } else {
-              resultsContainer.style.display = 'none';
-            }
-          });
-      } else {
-        resultsContainer.style.display = 'none';
-      }
-    }
-
-  </script>
 </nav>
+<script src="../static/js/navigation.js"></script>

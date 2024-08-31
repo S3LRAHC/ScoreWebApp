@@ -10,21 +10,6 @@ body {
     background-color: #f4f4f4;
 }
 
-
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 5px;
-}
-
-nav {
-    text-align: center;
-}
-
 h1 {
     color: #333;
     text-align: center;
@@ -74,3 +59,4 @@ tr:hover {
     border: 1px solid #4CAF50;
 }
 .pagination a:hover:not(.active) {background-color: #ddd;}
+
